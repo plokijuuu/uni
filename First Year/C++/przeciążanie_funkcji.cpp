@@ -97,23 +97,8 @@ vector<int> suma(const vector<int>&a, const vector<int>&b)
 }
 vector<int> suma(const vector<int>&a, const vector<int>&b, const vector<int>&c)
 {
-    vector<int> ans = suma(a, b);
-    for (int i = 0; i < c.size(); i++)
-    {
-        bool temp = 1;
-        for (int j = 0; j < ans.size(); j++)
-        {
-            if (c[i] == ans[j])
-            {
-                temp = 0;
-                break;
-            }
-        }
-        if (temp == 1)
-        {
-            ans.push_back(c[i]);
-        }
-    }
+    vector<int> ans = suma(suma(a, b), c);
+    
     return ans;
 }
 vector<int> roz(const vector<int>&a, const vector<int>&b)
@@ -139,24 +124,7 @@ vector<int> roz(const vector<int>&a, const vector<int>&b)
 }
 vector<int> roz(const vector<int>&a,const vector<int>&b, const vector<int>&c)
 {
-    vector<int> ans;
-    vector <int> sum = suma(a, b);
-    for (int i = 0; i < c.size(); i++)
-    {
-        bool temp = 1;
-        for (int j = 0; j < sum.size(); j++)
-        {
-            if (c[i] == sum[j])
-            {
-                temp = 0;
-                break;
-            }
-        }
-        if (temp == 1)
-        {
-            ans.push_back(c[i]);
-        }
-    }
+    vector<int> ans = roz(c, suma(a,b));
     return ans;
 }
 vector <int> wspol(const vector<int>&a, const vector<int>&b)
@@ -178,19 +146,6 @@ vector <int> wspol(const vector<int>&a, const vector<int>&b)
 }
 vector <int> wspol(const vector<int>&a, const vector<int>&b, const vector<int>&c)
 {
-    vector <int> ans;
-    vector <int> ws = wspol(a, b);
-    for (int i = 0; i < c.size(); i++)
-    {
-        for (int j = 0; j < ws.size(); j++)
-        {
-            if (c[i] == ws[j])
-            {
-                ans.push_back(c[i]);
-                break;
-            }
-        }
-
-    }
+    vector <int> ans = wspol(c, wspol(a,b));
     return ans;
 }
